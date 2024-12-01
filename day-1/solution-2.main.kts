@@ -13,13 +13,13 @@ File("input")
     }
     .unzip()
     .let { (left, right) ->
-        left
-            .sorted()
-            .zip(right.sorted())
-            .sumOf { (left, right) ->
-                distance(left, right)
-            }
+        val frequencies =
+            right
+                .groupingBy { it }
+                .eachCount()
+
+        left.sumOf {
+            it * frequencies.getOrDefault(it, 0)
+        }
     }
     .let(::println)
-
-fun distance(a: Int, b: Int) = abs(a - b)
