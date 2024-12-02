@@ -3,7 +3,7 @@
 import java.io.File
 import kotlin.math.abs
 
-File("input")
+File("input.txt")
     .readLines()
     .map {
         it.split("\\s+".toRegex())
